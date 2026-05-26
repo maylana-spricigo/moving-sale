@@ -154,11 +154,7 @@ function Hero({ stats }) {
       <h1 style={{ maxWidth: "767px", fontSize: "clamp(40px, 10.5vw, 98px)", lineHeight: 1 }}>
         We're moving and <em style={{ fontSize: "inherit" }}>everything must go</em>
       </h1>
-      <p className="hero-lede">Add items below, confirm reservation, pick it up in Cambridge
-
-
-
-      </p>
+      <p className="hero-lede">Add items below, confirm reservation, pick it up close to Harvard Yard</p>
       <div className="hero-meta">
         <div className="hero-meta-item">
           <div className="hero-meta-label">Available</div>
