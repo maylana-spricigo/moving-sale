@@ -296,12 +296,6 @@ function Filters({
           </label>
 
           <div style={{ flex: 1 }}></div>
-
-          {hasReservations &&
-          <button className="reset-link" onClick={onReset} title="Clear all reservations">
-              ↻ Reset
-            </button>
-          }
         </div>
       </div>
 
@@ -474,13 +468,6 @@ function MobileFilterSheet({
             </label>
           </section>
 
-          {hasReservations && (
-            <section className="mfs-section">
-              <button className="mfs-reset" onClick={onReset}>
-                ↻ Reset all reservations
-              </button>
-            </section>
-          )}
         </div>
 
         <div className="mfs-foot">
