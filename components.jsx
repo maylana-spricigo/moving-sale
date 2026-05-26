@@ -1069,10 +1069,55 @@ function Confirmation({ data, onClose }) {
 // ============================================
 // Reservations list (seller admin view)
 // ============================================
+const ADMIN_CODE = 'bito1408';
+
 function ReservationsList({ onClose }) {
+  const [unlocked, setUnlocked] = useState(false);
+  const [codeInput, setCodeInput] = useState('');
+  const [codeError, setCodeError] = useState(false);
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const db = window.db;
+
+  function submitCode(e) {
+    e.preventDefault();
+    if (codeInput === ADMIN_CODE) {
+      setUnlocked(true);
+      setCodeError(false);
+    } else {
+      setCodeError(true);
+      setCodeInput('');
+    }
+  }
+
+  if (!unlocked) {
+    return (
+      <div className="confirm-overlay" role="dialog" aria-modal="true">
+        <div className="confirm-inner" style={{ maxWidth: 380 }}>
+          <div className="confirm-mark">🔒</div>
+          <h2>Seller access</h2>
+          <p className="lede">Enter the access code to view reservations.</p>
+          <form onSubmit={submitCode}>
+            <div className={'field' + (codeError ? ' error' : '')}>
+              <label>Access code</label>
+              <input
+                type="password"
+                value={codeInput}
+                onChange={e => { setCodeInput(e.target.value); setCodeError(false); }}
+                placeholder="••••••••"
+                autoFocus
+              />
+              {codeError && <div className="field-error">Incorrect code — try again.</div>}
+            </div>
+            <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
+              <button type="submit" className="btn primary large" style={{ flex: 1 }}>Unlock</button>
+              <button type="button" className="btn large" onClick={onClose}>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     if (!db) { setLoading(false); return; }
