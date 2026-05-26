@@ -13,21 +13,14 @@ function App() {
 
   // ---- state ----
   const allItems = window.SALE_ITEMS || [];
+  const db = window.db;
 
-  // localStorage-persisted "reserved/sold" overrides (for demo state)
-  // and cart
-  const [overrides, setOverrides] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('ms-overrides') || '{}'); }
-    catch { return {}; }
-  });
+  const [overrides, setOverrides] = useState({});
   const [cart, setCart] = useState(() => {
     try { return JSON.parse(localStorage.getItem('ms-cart') || '[]'); }
     catch { return []; }
   });
-  const [interest, setInterest] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('ms-interest') || '{}'); }
-    catch { return {}; }
-  });
+  const [interest, setInterest] = useState({});
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -39,12 +32,29 @@ function App() {
   });
   const [contactErrors, setContactErrors] = useState({});
 
-  // Persist
+  // Persist cart
   useEffect(() => { localStorage.setItem('ms-cart', JSON.stringify(cart)); }, [cart]);
-  useEffect(() => { localStorage.setItem('ms-overrides', JSON.stringify(overrides)); }, [overrides]);
-  useEffect(() => { localStorage.setItem('ms-interest', JSON.stringify(interest)); }, [interest]);
 
-  // Merge overrides into items (allows simulating sold/reserved)
+  // Real-time Firestore listeners for shared state
+  useEffect(() => {
+    if (!db) return;
+
+    const unsubInterest = db.collection('interest').onSnapshot(snapshot => {
+      const data = {};
+      snapshot.forEach(doc => { data[doc.id] = doc.data().entries || []; });
+      setInterest(data);
+    });
+
+    const unsubOverrides = db.collection('overrides').onSnapshot(snapshot => {
+      const data = {};
+      snapshot.forEach(doc => { data[doc.id] = doc.data().status; });
+      setOverrides(data);
+    });
+
+    return () => { unsubInterest(); unsubOverrides(); };
+  }, []);
+
+  // Merge overrides into items
   const items = useMemo(() => {
     return allItems.map(it => {
       const ov = overrides[it.id];
@@ -52,7 +62,7 @@ function App() {
     });
   }, [overrides]);
 
-  // ---- derived: categories with counts (always shown) ----
+  // ---- derived: categories with counts ----
   const categories = useMemo(() => {
     const map = new Map();
     items.forEach(i => {
@@ -73,7 +83,6 @@ function App() {
     });
 
     const featuredScore = (i) => {
-      // Available now first, then later, then reserved, then sold
       const s = i.status;
       if (s === 'available now') return 0;
       if (s === 'available after Jun 15') return 1;
@@ -132,6 +141,7 @@ function App() {
     setContactErrors(e);
     return Object.keys(e).length === 0;
   }
+
   async function confirmReservation() {
     if (!validate()) return;
     if (sending) return;
@@ -149,18 +159,20 @@ function App() {
     const result = await sendReservationEmail(payload);
     setSending(false);
 
-    // Mark items as reserved (local visual state)
-    const newOv = { ...overrides };
-    cart.forEach(id => { newOv[id] = 'reserved'; });
-    setOverrides(newOv);
-
-    // Append to interest registry so other visitors can see who's reserved each item
-    const newInterest = { ...interest };
-    const entry = { name: contactInfo.name, when: new Date().toISOString() };
-    cart.forEach(id => {
-      newInterest[id] = [...(newInterest[id] || []), entry];
-    });
-    setInterest(newInterest);
+    // Write to Firestore — mark reserved + log interest (shared across all visitors)
+    if (db) {
+      const batch = db.batch();
+      const entry = { name: contactInfo.name, when: new Date().toISOString() };
+      cart.forEach(id => {
+        batch.set(db.collection('overrides').doc(id), { status: 'reserved' });
+        batch.set(
+          db.collection('interest').doc(id),
+          { entries: firebase.firestore.FieldValue.arrayUnion(entry) },
+          { merge: true }
+        );
+      });
+      await batch.commit().catch(console.error);
+    }
 
     setConfirmation({
       ...payload,
@@ -172,9 +184,20 @@ function App() {
     setContactInfo({ name: '', email: '', whatsapp: '', pickup: '', notes: '' });
   }
 
-  // Scroll the catalog to the top whenever filters/sort change.
-  // The filters bar is sticky (top: 65px) so we offset by header height
-  // to land just below the controls instead of behind them.
+  async function resetAll() {
+    setCart([]);
+    if (db) {
+      const [interestSnap, overridesSnap] = await Promise.all([
+        db.collection('interest').get(),
+        db.collection('overrides').get()
+      ]);
+      const batch = db.batch();
+      interestSnap.forEach(doc => batch.delete(doc.ref));
+      overridesSnap.forEach(doc => batch.delete(doc.ref));
+      await batch.commit().catch(console.error);
+    }
+  }
+
   function scrollToCatalog() {
     const catalogEl = document.querySelector('.catalog');
     if (!catalogEl) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
@@ -186,6 +209,7 @@ function App() {
 
   // ---- render ----
   const location = '12 Ware St · Cambridge, MA';
+  const hasReservations = Object.keys(overrides).length > 0 || cart.length > 0 || Object.keys(interest).length > 0;
 
   return (
     <React.Fragment>
@@ -201,8 +225,8 @@ function App() {
         onLayoutChange={v => setTweak('layout', v)}
         showSold={t.showSold}
         onShowSoldChange={v => setTweak('showSold', v)}
-        hasReservations={Object.keys(overrides).length > 0 || cart.length > 0 || Object.keys(interest).length > 0}
-        onReset={() => { setOverrides({}); setCart([]); setInterest({}); }}
+        hasReservations={hasReservations}
+        onReset={resetAll}
         resultsCount={visibleItems.length}
       />
 
