@@ -1066,10 +1066,86 @@ function Confirmation({ data, onClose }) {
 
 }
 
+// ============================================
+// Reservations list (seller admin view)
+// ============================================
+function ReservationsList({ onClose }) {
+  const [reservations, setReservations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const db = window.db;
+
+  useEffect(() => {
+    if (!db) { setLoading(false); return; }
+    const unsub = db.collection('reservations')
+      .orderBy('at', 'desc')
+      .onSnapshot(
+        snap => { setReservations(snap.docs.map(d => ({ id: d.id, ...d.data() }))); setLoading(false); },
+        () => setLoading(false)
+      );
+    return () => unsub();
+  }, []);
+
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+  }, [onClose]);
+
+  const totalValue = reservations.reduce((a, r) => a + (r.total || 0), 0);
+
+  return (
+    <div className="confirm-overlay" role="dialog" aria-modal="true">
+      <div className="confirm-inner" style={{ maxWidth: 720 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
+          <div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 6 }}>Seller view</div>
+            <h2 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: 42, fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 1 }}>Reservations</h2>
+          </div>
+          <button className="btn" onClick={onClose}>← Back to catalog</button>
+        </div>
+
+        {loading ? (
+          <p style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)', fontSize: 13 }}>Loading…</p>
+        ) : reservations.length === 0 ? (
+          <div className="empty"><h3>No reservations yet.</h3><p>They'll appear here as buyers confirm.</p></div>
+        ) : (
+          <>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--muted)', marginBottom: 24, textTransform: 'uppercase', letterSpacing: '0.1em', paddingBottom: 16, borderBottom: '1px solid var(--line)' }}>
+              {reservations.length} reservation{reservations.length !== 1 ? 's' : ''} · {money(totalValue)} total
+            </div>
+            {reservations.map(r => (
+              <div key={r.id} className="confirm-summary" style={{ marginBottom: 16 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 14 }}>
+                  <h4 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 400 }}>{r.contact?.name}</h4>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--muted)' }}>{timeAgo(r.at)}</span>
+                </div>
+                {r.contact?.email && <div className="confirm-summary-row"><span className="label">Email</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.email}</span></div>}
+                {r.contact?.whatsapp && <div className="confirm-summary-row"><span className="label">WhatsApp</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.whatsapp}</span></div>}
+                {r.contact?.pickup && <div className="confirm-summary-row"><span className="label">Pickup</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.pickup}</span></div>}
+                {r.contact?.notes && <div className="confirm-summary-row"><span className="label">Notes</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.notes}</span></div>}
+                <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--line-soft)' }}>
+                  {(r.items || []).map((item, j) => (
+                    <div key={j} className="confirm-summary-row">
+                      <span style={{ textTransform: 'capitalize', fontSize: 14 }}>{item.name}</span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>{money(item.finalPrice)}</span>
+                    </div>
+                  ))}
+                  <div className="confirm-summary-total"><span>Total</span><span className="amt">{money(r.total)}</span></div>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ---- export to window for app.jsx ----
 Object.assign(window, {
   Header, Hero, Filters, ProductCard, CartDrawer, Confirmation, FloatingCart,
-  ItemDetailModal,
+  ItemDetailModal, ReservationsList,
   sendReservationEmail,
   money, categoryLabel, statusLabel, statusClass, publicName, timeAgo
 });

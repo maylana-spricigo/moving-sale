@@ -21,6 +21,7 @@ function App() {
     catch { return []; }
   });
   const [interest, setInterest] = useState({});
+  const [showAdmin, setShowAdmin] = useState(() => window.location.search.includes('admin'));
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -159,7 +160,7 @@ function App() {
     const result = await sendReservationEmail(payload);
     setSending(false);
 
-    // Write to Firestore — mark reserved + log interest (shared across all visitors)
+    // Write to Firestore — mark reserved + log interest + store full reservation
     if (db) {
       const batch = db.batch();
       const entry = { name: contactInfo.name, when: new Date().toISOString() };
@@ -170,6 +171,13 @@ function App() {
           { entries: firebase.firestore.FieldValue.arrayUnion(entry) },
           { merge: true }
         );
+      });
+      batch.set(db.collection('reservations').doc(), {
+        contact: { ...contactInfo },
+        items: cartItems.map(i => ({ id: i.id, name: i.name, category: i.category, finalPrice: i.finalPrice, status: i.status })),
+        total,
+        originalTotal,
+        at: new Date().toISOString()
       });
       await batch.commit().catch(console.error);
     }
@@ -286,6 +294,10 @@ function App() {
           data={confirmation}
           onClose={() => setConfirmation(null)}
         />
+      )}
+
+      {showAdmin && (
+        <ReservationsList onClose={() => setShowAdmin(false)} />
       )}
 
       <ItemDetailModal
