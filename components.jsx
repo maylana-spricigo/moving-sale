@@ -168,6 +168,10 @@ function Hero({ stats }) {
           <div className="hero-meta-label">Pickup</div>
           <div className="hero-meta-value">12 Ware Street, Cambridge, MA<br /><span style={{ color: 'var(--muted)', fontSize: '13px' }}>Full address after reservation · Parking available</span></div>
         </div>
+        <div className="hero-meta-item" style={{ padding: "18px 24px 18px 18px" }}>
+          <div className="hero-meta-label">Payment</div>
+          <div className="hero-meta-value">At pickup — <span style={{ color: 'var(--muted)', fontSize: '13px' }}>Zelle or cash accepted</span></div>
+        </div>
       </div>
     </section>);
 
