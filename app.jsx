@@ -1,0 +1,280 @@
+// ============================================
+// Moving sale — main App
+// ============================================
+const { useState, useEffect, useMemo } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "showSold": true,
+  "layout": "grid"
+}/*EDITMODE-END*/;
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  // ---- state ----
+  const allItems = window.SALE_ITEMS || [];
+
+  // localStorage-persisted "reserved/sold" overrides (for demo state)
+  // and cart
+  const [overrides, setOverrides] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('ms-overrides') || '{}'); }
+    catch { return {}; }
+  });
+  const [cart, setCart] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('ms-cart') || '[]'); }
+    catch { return []; }
+  });
+  const [interest, setInterest] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('ms-interest') || '{}'); }
+    catch { return {}; }
+  });
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [sort, setSort] = useState('featured');
+  const [confirmation, setConfirmation] = useState(null);
+  const [sending, setSending] = useState(false);
+  const [contactInfo, setContactInfo] = useState({
+    name: '', email: '', whatsapp: '', pickup: '', notes: ''
+  });
+  const [contactErrors, setContactErrors] = useState({});
+
+  // Persist
+  useEffect(() => { localStorage.setItem('ms-cart', JSON.stringify(cart)); }, [cart]);
+  useEffect(() => { localStorage.setItem('ms-overrides', JSON.stringify(overrides)); }, [overrides]);
+  useEffect(() => { localStorage.setItem('ms-interest', JSON.stringify(interest)); }, [interest]);
+
+  // Merge overrides into items (allows simulating sold/reserved)
+  const items = useMemo(() => {
+    return allItems.map(it => {
+      const ov = overrides[it.id];
+      return ov ? { ...it, status: ov } : it;
+    });
+  }, [overrides]);
+
+  // ---- derived: categories with counts (always shown) ----
+  const categories = useMemo(() => {
+    const map = new Map();
+    items.forEach(i => {
+      if (!t.showSold && i.status === 'sold') return;
+      map.set(i.category, (map.get(i.category) || 0) + 1);
+    });
+    return [...map.entries()]
+      .map(([id, count]) => ({ id, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [items, t.showSold]);
+
+  // ---- filtered + sorted items ----
+  const visibleItems = useMemo(() => {
+    let out = items.filter(i => {
+      if (!t.showSold && i.status === 'sold') return false;
+      if (activeCategory !== 'all' && i.category !== activeCategory) return false;
+      return true;
+    });
+
+    const featuredScore = (i) => {
+      // Available now first, then later, then reserved, then sold
+      const s = i.status;
+      if (s === 'available now') return 0;
+      if (s === 'available after Jun 15') return 1;
+      if (s === 'reserved') return 2;
+      return 3;
+    };
+
+    out.sort((a, b) => {
+      if (sort === 'featured') {
+        return featuredScore(a) - featuredScore(b) || b.finalPrice - a.finalPrice;
+      }
+      if (sort === 'price-asc') return a.finalPrice - b.finalPrice;
+      if (sort === 'price-desc') return b.finalPrice - a.finalPrice;
+      if (sort === 'discount-desc') {
+        const da = parseInt((a.discount || '0').replace('%', ''), 10);
+        const db = parseInt((b.discount || '0').replace('%', ''), 10);
+        return db - da;
+      }
+      if (sort === 'name-asc') return a.name.localeCompare(b.name);
+      return 0;
+    });
+    return out;
+  }, [items, activeCategory, sort, t.showSold]);
+
+  // ---- cart helpers ----
+  const cartItems = useMemo(() => {
+    return cart.map(id => items.find(i => i.id === id)).filter(Boolean);
+  }, [cart, items]);
+  const cartIds = useMemo(() => new Set(cart), [cart]);
+
+  function addToCart(id) {
+    setCart(c => c.includes(id) ? c : [...c, id]);
+  }
+  function removeFromCart(id) {
+    setCart(c => c.filter(x => x !== id));
+  }
+
+  // ---- contact form ----
+  function setContact(field, value) {
+    setContactInfo(c => ({ ...c, [field]: value }));
+    if (contactErrors[field]) {
+      setContactErrors(e => ({ ...e, [field]: null }));
+    }
+  }
+  function validate() {
+    const e = {};
+    if (!contactInfo.name.trim()) e.name = 'Please enter your name.';
+    if (!contactInfo.email.trim() && !contactInfo.whatsapp.trim()) {
+      e.email = 'Email or WhatsApp required.';
+      e.whatsapp = ' ';
+    } else {
+      if (contactInfo.email.trim() && !/^\S+@\S+\.\S+$/.test(contactInfo.email.trim())) {
+        e.email = "That email doesn't look right.";
+      }
+    }
+    setContactErrors(e);
+    return Object.keys(e).length === 0;
+  }
+  async function confirmReservation() {
+    if (!validate()) return;
+    if (sending) return;
+    const total = cartItems.reduce((a, i) => a + i.finalPrice, 0);
+    const originalTotal = cartItems.reduce((a, i) => a + i.originalPrice, 0);
+    const payload = {
+      items: cartItems,
+      contact: { ...contactInfo },
+      total,
+      originalTotal,
+      at: new Date().toISOString()
+    };
+
+    setSending(true);
+    const result = await sendReservationEmail(payload);
+    setSending(false);
+
+    // Mark items as reserved (local visual state)
+    const newOv = { ...overrides };
+    cart.forEach(id => { newOv[id] = 'reserved'; });
+    setOverrides(newOv);
+
+    // Append to interest registry so other visitors can see who's reserved each item
+    const newInterest = { ...interest };
+    const entry = { name: contactInfo.name, when: new Date().toISOString() };
+    cart.forEach(id => {
+      newInterest[id] = [...(newInterest[id] || []), entry];
+    });
+    setInterest(newInterest);
+
+    setConfirmation({
+      ...payload,
+      sent: result.ok,
+      error: result.ok ? null : (result.error || (result.data && result.data.message) || null)
+    });
+    setCart([]);
+    setDrawerOpen(false);
+    setContactInfo({ name: '', email: '', whatsapp: '', pickup: '', notes: '' });
+  }
+
+  // Scroll the catalog to the top whenever filters/sort change.
+  // The filters bar is sticky (top: 65px) so we offset by header height
+  // to land just below the controls instead of behind them.
+  function scrollToCatalog() {
+    const catalogEl = document.querySelector('.catalog');
+    if (!catalogEl) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    const headerH = (document.querySelector('.header')?.offsetHeight || 0) +
+                    (document.querySelector('.filters')?.offsetHeight || 0);
+    const y = catalogEl.getBoundingClientRect().top + window.scrollY - headerH - 8;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  }
+
+  // ---- render ----
+  const location = '12 Ware St · Cambridge, MA';
+
+  return (
+    <React.Fragment>
+      <Header location={location} />
+      <Hero stats={{ total: items.filter(i => i.status !== 'sold' || t.showSold).length, categories: categories.length }} />
+      <Filters
+        categories={categories}
+        activeCategory={activeCategory}
+        onCategoryChange={(c) => { setActiveCategory(c); scrollToCatalog(); }}
+        sort={sort}
+        onSortChange={(s) => { setSort(s); scrollToCatalog(); }}
+        layout={t.layout}
+        onLayoutChange={v => setTweak('layout', v)}
+        showSold={t.showSold}
+        onShowSoldChange={v => setTweak('showSold', v)}
+        hasReservations={Object.keys(overrides).length > 0 || cart.length > 0 || Object.keys(interest).length > 0}
+        onReset={() => { setOverrides({}); setCart([]); setInterest({}); }}
+        resultsCount={visibleItems.length}
+      />
+
+      <section className="catalog">
+        <div className="catalog-head">
+          <div className="catalog-count">
+            Showing <strong>{visibleItems.length}</strong> of {items.filter(i => t.showSold || i.status !== 'sold').length} items
+          </div>
+        </div>
+
+        {visibleItems.length === 0 ? (
+          <div className="empty">
+            <h3>Nothing in this category yet.</h3>
+            <p>Try a different category or clear the filter.</p>
+          </div>
+        ) : (
+          <div className={'grid' + (t.layout === 'list' ? ' list-view' : '')}>
+            {visibleItems.map(item => (
+              <ProductCard
+                key={item.id}
+                item={item}
+                inCart={cartIds.has(item.id)}
+                onAdd={() => addToCart(item.id)}
+                onRemove={() => removeFromCart(item.id)}
+                onSelect={() => setSelectedItemId(item.id)}
+                interestCount={(interest[item.id] || []).length}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+
+      <footer className="foot">
+        Moving out · Cambridge, MA · {new Date().getFullYear()}
+      </footer>
+
+      <CartDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        items={cartItems}
+        onRemove={removeFromCart}
+        onConfirm={confirmReservation}
+        contactInfo={contactInfo}
+        onContactChange={setContact}
+        contactErrors={contactErrors}
+        sending={sending}
+      />
+
+      <FloatingCart
+        count={cart.length}
+        total={cartItems.reduce((a, i) => a + i.finalPrice, 0)}
+        onClick={() => setDrawerOpen(true)}
+      />
+
+      {confirmation && (
+        <Confirmation
+          data={confirmation}
+          onClose={() => setConfirmation(null)}
+        />
+      )}
+
+      <ItemDetailModal
+        item={selectedItemId ? items.find(i => i.id === selectedItemId) : null}
+        interestList={selectedItemId ? (interest[selectedItemId] || []) : []}
+        inCart={selectedItemId ? cartIds.has(selectedItemId) : false}
+        onClose={() => setSelectedItemId(null)}
+        onAdd={() => { if (selectedItemId) addToCart(selectedItemId); }}
+        onRemove={() => { if (selectedItemId) removeFromCart(selectedItemId); }}
+      />
+    </React.Fragment>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
