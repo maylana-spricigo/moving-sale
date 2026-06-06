@@ -632,7 +632,7 @@ input, textarea { font: inherit; color: inherit; }
   display: flex;
   align-items: baseline;
   gap: 6px;
-  flex-wrap: wrap;
+  overflow: hidden;
 }
 .card-name-link {
   display: inline-flex;
