@@ -85,10 +85,9 @@ function App() {
 
     const featuredScore = (i) => {
       const s = i.status;
-      if (s === 'available now') return 0;
-      if (s === 'available after Jun 15') return 1;
-      if (s === 'reserved') return 2;
-      return 3;
+      if (s === 'available') return 0;
+      if (s === 'reserved') return 1;
+      return 2;
     };
 
     out.sort((a, b) => {

@@ -13,15 +13,15 @@ function categoryLabel(c) {
   return c.charAt(0).toUpperCase() + c.slice(1);
 }
 function statusLabel(s) {
-  if (s === 'available now') return 'Available now';
-  if (s === 'available after Jun 15') return 'After Jun 15';
+  if (s === 'available') return 'Available';
+  if (s === 'available now') return 'Available';
+  if (s === 'available after Jun 15') return 'Available';
   if (s === 'reserved') return 'Reserved';
   if (s === 'sold') return 'Sold';
   return s;
 }
 function statusClass(s) {
-  if (s === 'available now') return 'now';
-  if (s === 'available after Jun 15') return 'later';
+  if (s === 'available' || s === 'available now' || s === 'available after Jun 15') return 'now';
   if (s === 'reserved') return 'reserved';
   if (s === 'sold') return 'sold';
   return '';
@@ -514,10 +514,12 @@ function ProductCard({ item, inCart, onAdd, onRemove, onSelect, interestCount })
             <span>{item.name}<br />photo</span>
           </div>
         )}
-        <div className={'card-status-badge ' + statusClass(item.status)}>
-          <span className="dot"></span>
-          <span>{statusLabel(item.status)}</span>
-        </div>
+        {(item.status === 'reserved' || item.status === 'sold') && (
+          <div className={'card-status-badge ' + statusClass(item.status)}>
+            <span className="dot"></span>
+            <span>{statusLabel(item.status)}</span>
+          </div>
+        )}
         {discountNum > 0 &&
           <div className="card-discount-badge">−{discountNum}%</div>
         }
@@ -631,10 +633,12 @@ function ItemDetailModal({ item, interestList, inCart, onClose, onAdd, onRemove 
                   <span>{item.name}<br />photo</span>
                 </div>
               )}
-              <div className={'card-status-badge ' + statusClass(item.status)}>
-                <span className="dot"></span>
-                <span>{statusLabel(item.status)}</span>
-              </div>
+              {(item.status === 'reserved' || item.status === 'sold') && (
+                <div className={'card-status-badge ' + statusClass(item.status)}>
+                  <span className="dot"></span>
+                  <span>{statusLabel(item.status)}</span>
+                </div>
+              )}
               {discountNum > 0 &&
                 <div className="card-discount-badge">−{discountNum}%</div>
               }
