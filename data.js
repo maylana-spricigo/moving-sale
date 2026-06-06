@@ -8,11 +8,9 @@ window.SALE_ITEMS = [
     "originalPrice": 72.24,
     "discount": "50%",
     "finalPrice": 36.12,
-    "monthsInUse": 7.2,
     "buyingDate": "October 18, 2025",
     "originalLink": "https://a.co/d/0ej6j13B",
     "image": "images/air matress - full size.png",
-    "condition": "second hand"
   },
   {
     "id": "bed-pillows-2x",
@@ -22,11 +20,9 @@ window.SALE_ITEMS = [
     "originalPrice": 28.99,
     "discount": "50%",
     "finalPrice": 14.5,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://a.co/d/09Gae4Wc",
     "image": "images/bed pillows 2x.png",
-    "condition": "second hand"
   },
   {
     "id": "comforter-set-queen-size-7-pieces",
@@ -36,11 +32,9 @@ window.SALE_ITEMS = [
     "originalPrice": 38.99,
     "discount": "70%",
     "finalPrice": 11.7,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://www.amazon.com/dp/B0CN34R5W3?ref_=ppx_hzod_title_dt_b_fed_asin_title_1_0",
     "image": "images/comforter set - queen size - 7 pieces.png",
-    "condition": "second hand"
   },
   {
     "id": "mattress-queen-size",
@@ -50,11 +44,9 @@ window.SALE_ITEMS = [
     "originalPrice": 191.24,
     "discount": "50%",
     "finalPrice": 95.62,
-    "monthsInUse": 8.9,
     "buyingDate": "August 27, 2025",
     "originalLink": null,
     "image": "images/mattress - queen size.png",
-    "condition": "second hand"
   },
   {
     "id": "sheet-set-queen-size-4-pieces-offwhite",
@@ -64,11 +56,9 @@ window.SALE_ITEMS = [
     "originalPrice": 29.99,
     "discount": "70%",
     "finalPrice": 9,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://www.amazon.com/dp/B0CT9R7WN5?ref_=ppx_hzod_title_dt_b_fed_asin_title_1_1",
     "image": "images/sheet set - queen size - 4 pieces - offwhite.png",
-    "condition": "second hand"
   },
   {
     "id": "sheet-set-queen-size-4-pieces-white",
@@ -78,11 +68,9 @@ window.SALE_ITEMS = [
     "originalPrice": 29.99,
     "discount": "70%",
     "finalPrice": 9,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://www.amazon.com/dp/B0CT9R7WN5?ref_=ppx_hzod_title_dt_b_fed_asin_title_1_1",
     "image": "images/sheet set - queen size - 4 pieces - white.png",
-    "condition": "second hand"
   },
   {
     "id": "bucket",
@@ -92,11 +80,9 @@ window.SALE_ITEMS = [
     "originalPrice": 15.88,
     "discount": "50%",
     "finalPrice": 7.94,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://www.amazon.com/dp/B0D2HWD7YN?ref_=ppx_hzod_title_dt_b_fed_asin_title_1_0",
     "image": "images/bucket.png",
-    "condition": "second hand"
   },
   {
     "id": "mop",
@@ -106,11 +92,9 @@ window.SALE_ITEMS = [
     "originalPrice": 15,
     "discount": "50%",
     "finalPrice": 7.5,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": null,
     "image": "images/mop.png",
-    "condition": "second hand"
   },
   {
     "id": "power-mop-pads",
@@ -120,11 +104,9 @@ window.SALE_ITEMS = [
     "originalPrice": 29.94,
     "discount": "20%",
     "finalPrice": 23.95,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://www.amazon.com/dp/B0C1DWC251?ref_=ppx_hzod_title_dt_b_fed_asin_title_0_0",
     "image": "images/power mop + pads.png",
-    "condition": "second hand"
   },
   {
     "id": "artificial-bambu",
@@ -134,11 +116,9 @@ window.SALE_ITEMS = [
     "originalPrice": 89.99,
     "discount": "50%",
     "finalPrice": 45,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.ikea.com/us/en/p/fejka-artificial-potted-plant-indoor-outdoor-bamboo-40568892/",
     "image": "images/artificial bambu.jpg",
-    "condition": "second hand"
   },
   {
     "id": "black-floor-lamp",
@@ -148,11 +128,9 @@ window.SALE_ITEMS = [
     "originalPrice": 14,
     "discount": "50%",
     "finalPrice": 7,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": null,
     "image": "images/black floor lamp.jpg",
-    "condition": "second hand"
   },
   {
     "id": "entryway-rug",
@@ -162,11 +140,9 @@ window.SALE_ITEMS = [
     "originalPrice": 16.4,
     "discount": "50%",
     "finalPrice": 8.2,
-    "monthsInUse": 3.7,
     "buyingDate": "January 30, 2026",
     "originalLink": "https://a.co/d/0cl6qUhI",
     "image": "images/entryway rug.png",
-    "condition": "second hand"
   },
   {
     "id": "gray-floor-lamp",
@@ -176,11 +152,9 @@ window.SALE_ITEMS = [
     "originalPrice": 14,
     "discount": "50%",
     "finalPrice": 7,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.target.com/p/torchiere-floor-lamp-room-essentials/-/A-87922467?preselect=87291871#lnk=sametab",
     "image": "images/gray floor lamp.png",
-    "condition": "second hand"
   },
   {
     "id": "paiting",
@@ -190,11 +164,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12,
     "discount": "50%",
     "finalPrice": 6,
-    "monthsInUse": 9,
     "buyingDate": "August 25, 2025",
     "originalLink": null,
     "image": "images/paiting.png",
-    "condition": "second hand"
   },
   {
     "id": "rug-8-x10",
@@ -204,11 +176,9 @@ window.SALE_ITEMS = [
     "originalPrice": 75.88,
     "discount": "50%",
     "finalPrice": 37.94,
-    "monthsInUse": 1.9,
     "buyingDate": "March 27, 2026",
     "originalLink": "https://a.co/d/0cAkhJsm",
     "image": "images/rug 8'x10'.png",
-    "condition": "second hand"
   },
   {
     "id": "table-lamp",
@@ -218,11 +188,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12,
     "discount": "50%",
     "finalPrice": 6,
-    "monthsInUse": 9,
     "buyingDate": "August 24, 2025",
     "originalLink": null,
     "image": "images/table lamp.png",
-    "condition": "second hand"
   },
   {
     "id": "table-lamp-with-outlet",
@@ -232,11 +200,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12,
     "discount": "50%",
     "finalPrice": 6,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/table lamp with outlet.png",
-    "condition": "second hand"
   },
   {
     "id": "throw-pillow-4x",
@@ -246,11 +212,9 @@ window.SALE_ITEMS = [
     "originalPrice": 26.89,
     "discount": "50%",
     "finalPrice": 13.45,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://www.amazon.com/dp/B07TJYBLMG?ref=ppx_yo2ov_dt_b_fed_asin_title",
     "image": "images/throw pillow 4x.png",
-    "condition": "second hand"
   },
   {
     "id": "throw-pillow-covers-4x",
@@ -260,11 +224,9 @@ window.SALE_ITEMS = [
     "originalPrice": 27.99,
     "discount": "50%",
     "finalPrice": 14,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": "https://www.amazon.com/dp/B0F1F9L2YR?ref_=ppx_hzod_title_dt_b_fed_asin_title_0_0",
     "image": "images/throw pillow covers 4x.png",
-    "condition": "second hand"
   },
   {
     "id": "microwave",
@@ -274,11 +236,9 @@ window.SALE_ITEMS = [
     "originalPrice": 89.99,
     "discount": "70%",
     "finalPrice": 27,
-    "monthsInUse": 9,
     "buyingDate": "August 24, 2025",
     "originalLink": null,
     "image": "images/microwave.png",
-    "condition": "second hand"
   },
   {
     "id": "outlet-extender-10-ft",
@@ -288,11 +248,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12.99,
     "discount": "50%",
     "finalPrice": 6.5,
-    "monthsInUse": 6,
     "buyingDate": "November 23, 2025",
     "originalLink": "https://a.co/d/0cWexYQx",
     "image": "images/outlet extender - 10 FT.png",
-    "condition": "second hand"
   },
   {
     "id": "outlet-extender-5ft",
@@ -302,11 +260,9 @@ window.SALE_ITEMS = [
     "originalPrice": 8.99,
     "discount": "50%",
     "finalPrice": 4.5,
-    "monthsInUse": 8,
     "buyingDate": "September 24, 2025",
     "originalLink": "https://a.co/d/09bkiCag",
     "image": "images/outlet extender - 5FT.png",
-    "condition": "second hand"
   },
   {
     "id": "outlet-extender-5ft-2",
@@ -316,11 +272,9 @@ window.SALE_ITEMS = [
     "originalPrice": 8.99,
     "discount": "50%",
     "finalPrice": 4.5,
-    "monthsInUse": 8.2,
     "buyingDate": "September 18, 2025",
     "originalLink": "https://a.co/d/09bkiCag",
     "image": "images/outlet extender - 5FT.png",
-    "condition": "second hand"
   },
   {
     "id": "robot-vacuum",
@@ -330,11 +284,9 @@ window.SALE_ITEMS = [
     "originalPrice": 114.74,
     "discount": "20%",
     "finalPrice": 91.79,
-    "monthsInUse": 8.8,
     "buyingDate": "August 30, 2025",
     "originalLink": "https://a.co/d/0aLmET1V",
     "image": "images/robot vacuum.png",
-    "condition": "second hand"
   },
   {
     "id": "bedframe",
@@ -344,11 +296,9 @@ window.SALE_ITEMS = [
     "originalPrice": 120,
     "discount": "80%",
     "finalPrice": 24,
-    "monthsInUse": 9,
     "buyingDate": "August 24, 2025",
     "originalLink": null,
     "image": "images/bedframe.png",
-    "condition": "second hand"
   },
   {
     "id": "chair-2x",
@@ -358,11 +308,9 @@ window.SALE_ITEMS = [
     "originalPrice": 70,
     "discount": "70%",
     "finalPrice": 21,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.ikea.com/us/en/p/stefan-chair-brown-black-00211088/",
     "image": "images/chair 2x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "couch",
@@ -372,11 +320,9 @@ window.SALE_ITEMS = [
     "originalPrice": 269,
     "discount": "70%",
     "finalPrice": 80.7,
-    "monthsInUse": 9,
     "buyingDate": "August 26, 2025",
     "originalLink": "https://www.ikea.com/us/en/p/klippan-loveseat-vissle-gray-s09010617/",
     "image": "images/couch.png",
-    "condition": "second hand"
   },
   {
     "id": "desk",
@@ -386,11 +332,9 @@ window.SALE_ITEMS = [
     "originalPrice": 99.99,
     "discount": "50%",
     "finalPrice": 50,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.ikea.com/us/en/p/micke-desk-black-brown-10244743/",
     "image": "images/desk.png",
-    "condition": "second hand"
   },
   {
     "id": "dinner-table",
@@ -400,11 +344,9 @@ window.SALE_ITEMS = [
     "originalPrice": 331.66,
     "discount": "70%",
     "finalPrice": 99.5,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.homedepot.com/p/Linon-Home-Decor-Angie-Teal-Blue-and-Dark-Gray-Wood-59-in-4-Leg-Dining-Table-Seats-6-THD4572/326109142",
     "image": "images/dinner table.png",
-    "condition": "second hand"
   },
   {
     "id": "dresser",
@@ -414,11 +356,9 @@ window.SALE_ITEMS = [
     "originalPrice": 136.21,
     "discount": "50%",
     "finalPrice": 68.11,
-    "monthsInUse": 8.7,
     "buyingDate": "September 4, 2025",
     "originalLink": "https://a.co/d/0cmSpwPT",
     "image": "images/dresser.png",
-    "condition": "second hand"
   },
   {
     "id": "flexispot-desk",
@@ -428,11 +368,9 @@ window.SALE_ITEMS = [
     "originalPrice": 639.99,
     "discount": "70%",
     "finalPrice": 192,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.flexispot.com/flexispot-pro-standing-desk-e7",
     "image": "images/flexispot desk.png",
-    "condition": "second hand"
   },
   {
     "id": "foldable-shelf",
@@ -442,11 +380,9 @@ window.SALE_ITEMS = [
     "originalPrice": 67.94,
     "discount": "50%",
     "finalPrice": 33.97,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.homedepot.com/p/WINSOME-WOOD-Terry-4-Tier-Foldable-Shelf-Narrow-Black-20852/318372372",
     "image": "images/foldable shelf.jpg",
-    "condition": "second hand"
   },
   {
     "id": "leather-armchair",
@@ -456,11 +392,9 @@ window.SALE_ITEMS = [
     "originalPrice": 105,
     "discount": "50%",
     "finalPrice": 52.5,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.homedepot.com/p/Glamour-Home-Adaya-Cappuccino-Brown-Faux-Leather-Arm-Chair-with-Beech-Legs-Set-of-2-GHDC-1191/312092256",
     "image": "images/leather armchair.png",
-    "condition": "second hand"
   },
   {
     "id": "office-desk-chair",
@@ -470,11 +404,9 @@ window.SALE_ITEMS = [
     "originalPrice": 39.86,
     "discount": "70%",
     "finalPrice": 11.96,
-    "monthsInUse": 6,
     "buyingDate": "November 23, 2025",
     "originalLink": "https://a.co/d/04iDZkaV",
     "image": "images/office desk chair.jpg",
-    "condition": "second hand"
   },
   {
     "id": "office-desk-chair-2",
@@ -484,11 +416,9 @@ window.SALE_ITEMS = [
     "originalPrice": 40,
     "discount": "70%",
     "finalPrice": 12,
-    "monthsInUse": null,
     "buyingDate": null,
     "originalLink": null,
     "image": "images/office desk chair.png",
-    "condition": "second hand"
   },
   {
     "id": "rustic-coffee-table",
@@ -498,11 +428,9 @@ window.SALE_ITEMS = [
     "originalPrice": 150,
     "discount": "50%",
     "finalPrice": 75,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/rustic coffee table.png",
-    "condition": "second hand"
   },
   {
     "id": "shoe-cabinet-bench",
@@ -512,11 +440,9 @@ window.SALE_ITEMS = [
     "originalPrice": 152.99,
     "discount": "50%",
     "finalPrice": 76.5,
-    "monthsInUse": 8.7,
     "buyingDate": "September 4, 2025",
     "originalLink": "https://a.co/d/07ohBY1B",
     "image": "images/shoe cabinet + bench.png",
-    "condition": "second hand"
   },
   {
     "id": "side-table-morsman",
@@ -526,11 +452,9 @@ window.SALE_ITEMS = [
     "originalPrice": 99.99,
     "discount": "70%",
     "finalPrice": 30,
-    "monthsInUse": 9,
     "buyingDate": "August 24, 2025",
     "originalLink": "https://www.etsy.com/pt/listing/1183845960/mersman-vintage-mid-century-modern-end?show_sold_out_detail=1&ref=nla_listing_details",
     "image": "images/side table - morsman.png",
-    "condition": "second hand"
   },
   {
     "id": "side-table-round",
@@ -540,11 +464,9 @@ window.SALE_ITEMS = [
     "originalPrice": 46.49,
     "discount": "50%",
     "finalPrice": 23.25,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.target.com/p/the-urban-port-15-34-modern-side-end-table-metal-round-tray-top-foldable-legs-black/-/A-93171292",
     "image": "images/side table round.jpg",
-    "condition": "second hand"
   },
   {
     "id": "side-table-with-drawers",
@@ -554,11 +476,9 @@ window.SALE_ITEMS = [
     "originalPrice": 40,
     "discount": "50%",
     "finalPrice": 20,
-    "monthsInUse": 8.9,
     "buyingDate": "August 28, 2025",
     "originalLink": null,
     "image": "images/side table with drawers.png",
-    "condition": "second hand"
   },
   {
     "id": "blender",
@@ -568,11 +488,9 @@ window.SALE_ITEMS = [
     "originalPrice": 20,
     "discount": "70%",
     "finalPrice": 6,
-    "monthsInUse": 7.4,
     "buyingDate": "October 13, 2025",
     "originalLink": "https://www.target.com/p/hamilton-beach-one-speed-single-serve-blender-black/-/A-11893664",
     "image": "images/blender.jpg",
-    "condition": "second hand"
   },
   {
     "id": "cake-pan-small",
@@ -582,11 +500,9 @@ window.SALE_ITEMS = [
     "originalPrice": 9,
     "discount": "50%",
     "finalPrice": 4.5,
-    "monthsInUse": 8.5,
     "buyingDate": "September 8, 2025",
     "originalLink": null,
     "image": "images/cake pan small.jpg",
-    "condition": "second hand"
   },
   {
     "id": "champagne-flute-4x",
@@ -596,11 +512,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12,
     "discount": "60%",
     "finalPrice": 4.8,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/champagne flute 4x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "cookie-sheet-large",
@@ -610,11 +524,9 @@ window.SALE_ITEMS = [
     "originalPrice": 9,
     "discount": "50%",
     "finalPrice": 4.5,
-    "monthsInUse": 8.5,
     "buyingDate": "September 8, 2025",
     "originalLink": "https://www.target.com/p/goodcook-11-34-x17-34-nonstick-steel-cookie-sheet-gray/-/A-88232825#lnk=sametab",
     "image": "images/cookie sheet large.png",
-    "condition": "second hand"
   },
   {
     "id": "crock-pot",
@@ -624,11 +536,9 @@ window.SALE_ITEMS = [
     "originalPrice": 89.87,
     "discount": "60%",
     "finalPrice": 35.95,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.walmart.com/ip/Crock-Pot-7-Quart-Smart-Pot-Slow-Cooker-Brushed-Stainless-Steel/54947078",
     "image": "images/crock pot.jpg",
-    "condition": "second hand"
   },
   {
     "id": "dinner-plate-3x",
@@ -638,11 +548,9 @@ window.SALE_ITEMS = [
     "originalPrice": 30,
     "discount": "50%",
     "finalPrice": 15,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/dinner plate 3x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "flatware",
@@ -652,11 +560,9 @@ window.SALE_ITEMS = [
     "originalPrice": 15,
     "discount": "50%",
     "finalPrice": 7.5,
-    "monthsInUse": 8.8,
     "buyingDate": "September 1, 2025",
     "originalLink": "https://www.target.com/p/20pc-teagan-flatware-silver-room-essentials-8482/-/A-14901073#lnk=sametab",
     "image": "images/flatware.png",
-    "condition": "second hand"
   },
   {
     "id": "glass-2x",
@@ -666,11 +572,9 @@ window.SALE_ITEMS = [
     "originalPrice": 16,
     "discount": "50%",
     "finalPrice": 8,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/glass 2x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "ikea-plates-5x",
@@ -680,11 +584,9 @@ window.SALE_ITEMS = [
     "originalPrice": 25,
     "discount": "50%",
     "finalPrice": 12.5,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.ikea.com/us/en/p/faergklar-18-piece-dinnerware-set-matte-dark-gray-20564710/",
     "image": "images/ikea plates 5x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "manual-can-opener",
@@ -694,11 +596,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12.99,
     "discount": "50%",
     "finalPrice": 6.5,
-    "monthsInUse": 7.2,
     "buyingDate": "October 18, 2025",
     "originalLink": "https://www.target.com/p/movssou-manual-can-opener-stainless-steel-safe-smooth-edge/-/A-93276577",
     "image": "images/manual can opener.png",
-    "condition": "second hand"
   },
   {
     "id": "mugs-4x",
@@ -708,11 +608,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12.74,
     "discount": "50%",
     "finalPrice": 6.37,
-    "monthsInUse": 8.3,
     "buyingDate": "September 15, 2025",
     "originalLink": "https://a.co/d/07d08yoG",
     "image": "images/mugs (4x).png",
-    "condition": "second hand"
   },
   {
     "id": "pie-dish",
@@ -722,11 +620,9 @@ window.SALE_ITEMS = [
     "originalPrice": 20,
     "discount": "50%",
     "finalPrice": 10,
-    "monthsInUse": null,
     "buyingDate": null,
     "originalLink": null,
     "image": "images/pie dish.jpg",
-    "condition": "second hand"
   },
   {
     "id": "plastic-bowl-2x",
@@ -736,11 +632,9 @@ window.SALE_ITEMS = [
     "originalPrice": 10,
     "discount": "50%",
     "finalPrice": 5,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/plastic bowl 2x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "plastic-plates-5x",
@@ -750,11 +644,9 @@ window.SALE_ITEMS = [
     "originalPrice": 10,
     "discount": "50%",
     "finalPrice": 5,
-    "monthsInUse": null,
     "buyingDate": null,
     "originalLink": null,
     "image": "images/plastic plates 5x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "popcorn-popper",
@@ -764,11 +656,9 @@ window.SALE_ITEMS = [
     "originalPrice": 15,
     "discount": "50%",
     "finalPrice": 7.5,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/popcorn popper.jpg",
-    "condition": "second hand"
   },
   {
     "id": "serving-bowl",
@@ -778,11 +668,9 @@ window.SALE_ITEMS = [
     "originalPrice": 30,
     "discount": "30%",
     "finalPrice": 21,
-    "monthsInUse": null,
     "buyingDate": null,
     "originalLink": null,
     "image": "images/serving bowl.jpg",
-    "condition": "second hand"
   },
   {
     "id": "shot-glass",
@@ -792,11 +680,9 @@ window.SALE_ITEMS = [
     "originalPrice": 20,
     "discount": "60%",
     "finalPrice": 8,
-    "monthsInUse": null,
     "buyingDate": null,
     "originalLink": null,
     "image": "images/shot glass.jpg",
-    "condition": "second hand"
   },
   {
     "id": "small-shot-glass",
@@ -806,11 +692,9 @@ window.SALE_ITEMS = [
     "originalPrice": 8,
     "discount": "50%",
     "finalPrice": 4,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/small shot glass.jpg",
-    "condition": "second hand"
   },
   {
     "id": "stub-glass-low-3x",
@@ -820,11 +704,9 @@ window.SALE_ITEMS = [
     "originalPrice": 20,
     "discount": "50%",
     "finalPrice": 10,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/stub glass - low 3x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "stub-glass-tall-5x",
@@ -834,11 +716,9 @@ window.SALE_ITEMS = [
     "originalPrice": 40,
     "discount": "50%",
     "finalPrice": 20,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/stub glass - tall 5x.jpg",
-    "condition": "second hand"
   },
   {
     "id": "utensil-set-with-holder",
@@ -848,11 +728,9 @@ window.SALE_ITEMS = [
     "originalPrice": 10,
     "discount": "50%",
     "finalPrice": 5,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/utensil set with holder.png",
-    "condition": "second hand"
   },
   {
     "id": "water-filter",
@@ -862,11 +740,9 @@ window.SALE_ITEMS = [
     "originalPrice": 5,
     "discount": "50%",
     "finalPrice": 2.5,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": null,
     "image": "images/water filter.png",
-    "condition": "second hand"
   },
   {
     "id": "water-filter-pitcher",
@@ -876,11 +752,9 @@ window.SALE_ITEMS = [
     "originalPrice": 16,
     "discount": "50%",
     "finalPrice": 8,
-    "monthsInUse": 8.8,
     "buyingDate": "August 31, 2025",
     "originalLink": "https://www.cvs.com/shop/brita-small-6-cup-denali-water-filter-pitcher-with-1-brita-standard-filter-white-prodid-822759",
     "image": "images/water filter pitcher.png",
-    "condition": "second hand"
   },
   {
     "id": "3-drawer-stacking",
@@ -890,11 +764,9 @@ window.SALE_ITEMS = [
     "originalPrice": 20.99,
     "discount": "50%",
     "finalPrice": 10.5,
-    "monthsInUse": 7.1,
     "buyingDate": "October 21, 2025",
     "originalLink": "https://www.target.com/p/iris-medium-3-drawer-stacking-desktop-organizer--1-pack--plastic-drawer-storage-container-for-stationery-art-craft-supplies--white/-/A-87079304",
     "image": "images/3-drawer stacking.png",
-    "condition": "second hand"
   },
   {
     "id": "desk-tool-organizer",
@@ -904,11 +776,9 @@ window.SALE_ITEMS = [
     "originalPrice": 14,
     "discount": "50%",
     "finalPrice": 7,
-    "monthsInUse": 7.3,
     "buyingDate": "October 15, 2025",
     "originalLink": "https://www.target.com/p/canvas-desk-tool-holder-organizer-black---brightroom--8482---desktop---38--office-organizers--polyester-canvas--12-25--34--width/-/A-86941073",
     "image": "images/desk tool organizer.png",
-    "condition": "second hand"
   },
   {
     "id": "drawer-organizer",
@@ -918,11 +788,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12,
     "discount": "50%",
     "finalPrice": 6,
-    "monthsInUse": null,
     "buyingDate": null,
     "originalLink": "https://www.amazon.com/Madesmart-Classic-4-Compartment-Organizer-Multipurpose/dp/B00EE05GG0?th=1",
     "image": "images/drawer organizer.jpg",
-    "condition": "second hand"
   },
   {
     "id": "makeup-organizer",
@@ -932,11 +800,9 @@ window.SALE_ITEMS = [
     "originalPrice": 15,
     "discount": "50%",
     "finalPrice": 7.5,
-    "monthsInUse": 7.3,
     "buyingDate": "October 16, 2025",
     "originalLink": "https://www.target.com/p/makeup-turntable-beauty-vanity-organizer-small---brightroom--8482---clear-plastic-makeup-storage-with-5-compartments--7--34-x7--34-x5-88--34-/-/A-75663616",
     "image": "images/makeup organizer.png",
-    "condition": "second hand"
   },
   {
     "id": "organizer-set",
@@ -946,11 +812,9 @@ window.SALE_ITEMS = [
     "originalPrice": 12,
     "discount": "50%",
     "finalPrice": 6,
-    "monthsInUse": 8.5,
     "buyingDate": "September 8, 2025",
     "originalLink": "https://www.target.com/p/6pc-plastic-drawer-organizer-clear-brightroom-8482/-/A-83901180#lnk=sametab",
     "image": "images/organizer set.png",
-    "condition": "second hand"
   },
   {
     "id": "storage-bin",
@@ -960,11 +824,9 @@ window.SALE_ITEMS = [
     "originalPrice": 8,
     "discount": "20%",
     "finalPrice": 6.4,
-    "monthsInUse": 7.2,
     "buyingDate": "October 17, 2025",
     "originalLink": "https://www.target.com/p/32qt-clear-storage-bin-with-latches---brightroom--8482-/-/A-93286401",
     "image": "images/storage bin.png",
-    "condition": "second hand"
   },
   {
     "id": "yoga-mat",
@@ -974,11 +836,9 @@ window.SALE_ITEMS = [
     "originalPrice": 24.99,
     "discount": "50%",
     "finalPrice": 12.5,
-    "monthsInUse": 9,
     "buyingDate": "August 25, 2025",
     "originalLink": "https://www.amazon.com/dp/B091FXKQZ6?ref=ppx_yo2ov_dt_b_fed_asin_title",
     "image": "images/yoga mat.png",
-    "condition": "second hand"
   },
   {
     "id": "ice-cubes",
@@ -988,11 +848,9 @@ window.SALE_ITEMS = [
     "originalPrice": 6.68,
     "discount": "50%",
     "finalPrice": 3.34,
-    "monthsInUse": null,
     "buyingDate": "November 27, 2025",
     "originalLink": "https://a.co/d/0bMnLcCx",
     "image": "images/ice cubes 3x.jpg",
-    "condition": "new"
   },
   {
     "id": "monopoly",
@@ -1002,10 +860,8 @@ window.SALE_ITEMS = [
     "originalPrice": 19.99,
     "discount": "50%",
     "finalPrice": 10,
-    "monthsInUse": null,
     "buyingDate": "November 27, 2025",
     "originalLink": "https://a.co/d/07uzu2X1",
     "image": "images/monopoly.jpg",
-    "condition": "new"
   }
 ];
