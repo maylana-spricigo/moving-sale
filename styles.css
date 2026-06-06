@@ -489,6 +489,10 @@ input, textarea { font: inherit; color: inherit; }
   text-transform: inherit;
   border-radius: 2px;
   transition: color 120ms ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .card-name-text:hover { color: var(--accent); }
 .card-name-text:focus-visible {
