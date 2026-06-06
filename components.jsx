@@ -281,20 +281,6 @@ function Filters({
             </button>
           </div>
 
-          <span className="filter-divider" aria-hidden="true"></span>
-
-          <label className="inline-toggle">
-            <input
-              type="checkbox"
-              checked={showSold}
-              onChange={(e) => onShowSoldChange(e.target.checked)} />
-            
-            <span className="inline-toggle-box" aria-hidden="true">
-              <svg viewBox="0 0 12 12" width="9" height="9"><path d="M2 6.5L5 9.5L10.5 3" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </span>
-            <span>Show sold</span>
-          </label>
-
           <div style={{ flex: 1 }}></div>
         </div>
       </div>
@@ -452,20 +438,6 @@ function MobileFilterSheet({
                 <span>List</span>
               </button>
             </div>
-          </section>
-
-          <section className="mfs-section">
-            <label className="inline-toggle mfs-toggle-row">
-              <input
-                type="checkbox"
-                checked={showSold}
-                onChange={e => onShowSoldChange(e.target.checked)}
-              />
-              <span className="inline-toggle-box" aria-hidden="true">
-                <svg viewBox="0 0 12 12" width="9" height="9"><path d="M2 6.5L5 9.5L10.5 3" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </span>
-              <span>Show sold items</span>
-            </label>
           </section>
 
         </div>
