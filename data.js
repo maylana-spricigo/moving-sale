@@ -979,5 +979,33 @@ window.SALE_ITEMS = [
     "originalLink": "https://www.amazon.com/dp/B091FXKQZ6?ref=ppx_yo2ov_dt_b_fed_asin_title",
     "image": "images/yoga mat.png",
     "condition": "second hand"
+  },
+  {
+    "id": "ice-cubes",
+    "name": "ice cubes 3x",
+    "category": "kitchen",
+    "status": "available",
+    "originalPrice": 6.68,
+    "discount": "50%",
+    "finalPrice": 3.34,
+    "monthsInUse": null,
+    "buyingDate": "November 27, 2025",
+    "originalLink": "https://a.co/d/0bMnLcCx",
+    "image": "images/ice cubes 3x.jpg",
+    "condition": "new"
+  },
+  {
+    "id": "monopoly",
+    "name": "monopoly (barely used)",
+    "category": "others",
+    "status": "available",
+    "originalPrice": 19.99,
+    "discount": "50%",
+    "finalPrice": 10,
+    "monthsInUse": null,
+    "buyingDate": "November 27, 2025",
+    "originalLink": "https://a.co/d/07uzu2X1",
+    "image": "images/monopoly.jpg",
+    "condition": "new"
   }
 ];
