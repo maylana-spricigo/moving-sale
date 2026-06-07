@@ -763,7 +763,7 @@ window.SALE_ITEMS = [
     "status": "available",
     "originalPrice": 20.99,
     "discount": "52%",
-    "finalPrice": 20,
+    "finalPrice": 10,
     "buyingDate": "October 21, 2025",
     "originalLink": "https://www.target.com/p/iris-medium-3-drawer-stacking-desktop-organizer--1-pack--plastic-drawer-storage-container-for-stationery-art-craft-supplies--white/-/A-87079304",
     "image": "images/3-drawer stacking.png",
