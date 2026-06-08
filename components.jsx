@@ -52,49 +52,42 @@ function timeAgo(iso) {
 }
 
 // ============================================
-// Email send via FormSubmit (no backend / no signup)
-// First request from this URL triggers an activation email
-// to the primary recipient — they click the link, and after
-// that every submission is delivered automatically.
+// Email send via Web3Forms
 // ============================================
-const SELLER_EMAILS = ['guilhermerosso.m@gmail.com', 'maylanaspricigo@gmail.com'];
-
 async function sendReservationEmail(payload) {
-  const [primary, ...rest] = SELLER_EMAILS;
-  const body = {
-    _subject: `Moving sale reservation — ${payload.contact.name}`,
-    _cc: rest.join(','),
-    _replyto: payload.contact.email || '',
-    _template: 'table',
-    _captcha: 'false',
-    Name: payload.contact.name,
-    Email: payload.contact.email || '—',
-    WhatsApp: payload.contact.whatsapp || '—',
-    Pickup_preference: payload.contact.pickup || '—',
-    Notes: payload.contact.notes || '—',
-    Items: payload.items.map((i) =>
-    `• ${i.name} (${i.category}) — ${money(i.finalPrice)} · ${statusLabel(i.status)}`
-    ).join('\n'),
-    Item_count: payload.items.length,
-    Total: money(payload.total),
-    Original_total: money(payload.originalTotal),
-    Savings: money(payload.originalTotal - payload.total),
-    Submitted_at: new Date().toLocaleString()
-  };
+  const message = [
+    `Name: ${payload.contact.name}`,
+    `Email: ${payload.contact.email || '—'}`,
+    `WhatsApp: ${payload.contact.whatsapp || '—'}`,
+    `Pickup preference: ${payload.contact.pickup || '—'}`,
+    `Notes: ${payload.contact.notes || '—'}`,
+    '',
+    'Items:',
+    ...payload.items.map(i => `• ${i.name} (${i.category}) — ${money(i.finalPrice)} · ${statusLabel(i.status)}`),
+    '',
+    `Item count: ${payload.items.length}`,
+    `Total: ${money(payload.total)}`,
+    `Original total: ${money(payload.originalTotal)}`,
+    `Savings: ${money(payload.originalTotal - payload.total)}`,
+    '',
+    `Submitted at: ${new Date().toLocaleString()}`
+  ].join('\n');
+
   try {
-    const res = await fetch(
-      'https://formsubmit.co/ajax/' + encodeURIComponent(primary),
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(body)
-      }
-    );
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7bda47e2-7cfa-459f-9ef9-de9715c687f6',
+        subject: `Moving sale reservation — ${payload.contact.name}`,
+        from_name: payload.contact.name,
+        replyto: payload.contact.email || '',
+        cc: 'guilhermerosso.m@gmail.com',
+        message
+      })
+    });
     const data = await res.json().catch(() => ({}));
-    const ok = res.ok && (data.success === 'true' || data.success === true || !data.message);
+    const ok = res.ok && data.success === true;
     return { ok, data };
   } catch (e) {
     return { ok: false, error: String(e && e.message || e) };
