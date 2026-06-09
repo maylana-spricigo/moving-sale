@@ -1049,6 +1049,24 @@ function ReservationsList({ onClose }) {
   const [soldNow, setSoldNow] = useState(new Set());
   const db = window.db;
 
+  useEffect(() => {
+    if (!unlocked || !db) { if (!unlocked) return; setLoading(false); return; }
+    const unsub = db.collection('reservations')
+      .orderBy('at', 'desc')
+      .onSnapshot(
+        snap => { setReservations(snap.docs.map(d => ({ id: d.id, ...d.data() }))); setLoading(false); },
+        () => setLoading(false)
+      );
+    return () => unsub();
+  }, [unlocked]);
+
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+  }, [onClose]);
+
   async function markAsSold(itemId) {
     if (!db || soldNow.has(itemId)) return;
     await db.collection('overrides').doc(itemId).set({ status: 'sold' }).catch(console.error);
@@ -1094,24 +1112,6 @@ function ReservationsList({ onClose }) {
       </div>
     );
   }
-
-  useEffect(() => {
-    if (!db) { setLoading(false); return; }
-    const unsub = db.collection('reservations')
-      .orderBy('at', 'desc')
-      .onSnapshot(
-        snap => { setReservations(snap.docs.map(d => ({ id: d.id, ...d.data() }))); setLoading(false); },
-        () => setLoading(false)
-      );
-    return () => unsub();
-  }, []);
-
-  useEffect(() => {
-    const onKey = e => { if (e.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', onKey);
-    document.body.style.overflow = 'hidden';
-    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
-  }, [onClose]);
 
   const totalValue = reservations.reduce((a, r) => a + (r.total || 0), 0);
 
