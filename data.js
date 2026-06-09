@@ -268,7 +268,7 @@ window.SALE_ITEMS = [
     "id": "outlet-extender-5ft-2",
     "name": "outlet extender - 5FT",
     "category": "electronics",
-    "status": "sold",
+    "status": "available",
     "originalPrice": 8.99,
     "discount": "50%",
     "finalPrice": 4.5,
