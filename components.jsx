@@ -1046,7 +1046,14 @@ function ReservationsList({ onClose }) {
   const [codeError, setCodeError] = useState(false);
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [soldNow, setSoldNow] = useState(new Set());
   const db = window.db;
+
+  async function markAsSold(itemId) {
+    if (!db || soldNow.has(itemId)) return;
+    await db.collection('overrides').doc(itemId).set({ status: 'sold' }).catch(console.error);
+    setSoldNow(s => new Set([...s, itemId]));
+  }
 
   function submitCode(e) {
     e.preventDefault();
@@ -1142,7 +1149,17 @@ function ReservationsList({ onClose }) {
                   {(r.items || []).map((item, j) => (
                     <div key={j} className="confirm-summary-row">
                       <span style={{ textTransform: 'capitalize', fontSize: 14 }}>{item.name}</span>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>{money(item.finalPrice)}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>{money(item.finalPrice)}</span>
+                        <button
+                          className="btn"
+                          style={{ fontSize: 11, padding: '2px 10px', opacity: soldNow.has(item.id) ? 0.5 : 1 }}
+                          onClick={() => markAsSold(item.id)}
+                          disabled={soldNow.has(item.id)}
+                        >
+                          {soldNow.has(item.id) ? 'Sold ✓' : 'Mark sold'}
+                        </button>
+                      </div>
                     </div>
                   ))}
                   <div className="confirm-summary-total"><span>Total</span><span className="amt">{money(r.total)}</span></div>
