@@ -67,6 +67,7 @@ function App() {
   const categories = useMemo(() => {
     const map = new Map();
     items.forEach(i => {
+      if (i.hidden) return;
       if (!t.showSold && i.status === 'sold') return;
       map.set(i.category, (map.get(i.category) || 0) + 1);
     });
@@ -78,6 +79,7 @@ function App() {
   // ---- filtered + sorted items ----
   const visibleItems = useMemo(() => {
     let out = items.filter(i => {
+      if (i.hidden) return false;
       if (!t.showSold && i.status === 'sold') return false;
       if (activeCategory !== 'all' && i.category !== activeCategory) return false;
       return true;
