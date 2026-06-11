@@ -149,10 +149,6 @@ function Hero({ stats }) {
       </h1>
       <p className="hero-lede">Add items below, confirm reservation, pick it up near Harvard Art Museum</p>
       <div className="hero-meta">
-        <div className="hero-meta-item">
-          <div className="hero-meta-label">Available</div>
-          <div className="hero-meta-value"><strong>{stats.total}</strong> items across {stats.categories} categories</div>
-        </div>
         <div className="hero-meta-item" style={{ padding: "18px 24px 18px 18px" }}>
           <div className="hero-meta-label">Pickup</div>
           <div className="hero-meta-value">12 Ware Street, Cambridge, MA<br /><span style={{ color: 'var(--muted)', fontSize: '13px' }}>Full address after reservation · Parking available</span></div>
