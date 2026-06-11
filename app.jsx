@@ -83,16 +83,15 @@ function App() {
       return true;
     });
 
-    const featuredScore = (i) => {
-      const s = i.status;
-      if (s === 'available') return 0;
-      if (s === 'reserved') return 1;
-      return 2;
+    const CATEGORY_ORDER = ['furniture','decor','bedding','organizers','kitchen','electronics','cleaning','others'];
+    const categoryScore = (i) => {
+      const idx = CATEGORY_ORDER.indexOf(i.category);
+      return idx === -1 ? 99 : idx;
     };
 
     out.sort((a, b) => {
       if (sort === 'featured') {
-        return featuredScore(a) - featuredScore(b) || b.finalPrice - a.finalPrice;
+        return categoryScore(a) - categoryScore(b) || b.finalPrice - a.finalPrice;
       }
       if (sort === 'price-asc') return a.finalPrice - b.finalPrice;
       if (sort === 'price-desc') return b.finalPrice - a.finalPrice;
