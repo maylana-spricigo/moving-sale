@@ -279,7 +279,7 @@ window.SALE_ITEMS = [
   },
   {
     "id": "robot-vacuum",
-    "name": "robot vacuum (barely used)",
+    "name": "Robot Vacuum (new in box)",
     "category": "electronics",
     "status": "available",
     "originalPrice": 114.74,
