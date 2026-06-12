@@ -1042,18 +1042,23 @@ function ReservationsList({ onClose }) {
   const [codeError, setCodeError] = useState(false);
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [soldNow, setSoldNow] = useState(new Set());
+  const [overrides, setOverrides] = useState({});
   const db = window.db;
 
   useEffect(() => {
     if (!unlocked || !db) { if (!unlocked) return; setLoading(false); return; }
-    const unsub = db.collection('reservations')
+    const unsubRes = db.collection('reservations')
       .orderBy('at', 'desc')
       .onSnapshot(
         snap => { setReservations(snap.docs.map(d => ({ id: d.id, ...d.data() }))); setLoading(false); },
         () => setLoading(false)
       );
-    return () => unsub();
+    const unsubOv = db.collection('overrides').onSnapshot(snap => {
+      const data = {};
+      snap.forEach(doc => { data[doc.id] = doc.data().status; });
+      setOverrides(data);
+    });
+    return () => { unsubRes(); unsubOv(); };
   }, [unlocked]);
 
   useEffect(() => {
@@ -1064,9 +1069,13 @@ function ReservationsList({ onClose }) {
   }, [onClose]);
 
   async function markAsSold(itemId) {
-    if (!db || soldNow.has(itemId)) return;
+    if (!db) return;
     await db.collection('overrides').doc(itemId).set({ status: 'sold' }).catch(console.error);
-    setSoldNow(s => new Set([...s, itemId]));
+  }
+
+  async function makeAvailable(itemId) {
+    if (!db) return;
+    await db.collection('overrides').doc(itemId).set({ status: 'available' }).catch(console.error);
   }
 
   function submitCode(e) {
@@ -1142,22 +1151,29 @@ function ReservationsList({ onClose }) {
                 {r.contact?.pickup && <div className="confirm-summary-row"><span className="label">Pickup</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.pickup}</span></div>}
                 {r.contact?.notes && <div className="confirm-summary-row"><span className="label">Notes</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.notes}</span></div>}
                 <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--line-soft)' }}>
-                  {(r.items || []).map((item, j) => (
-                    <div key={j} className="confirm-summary-row">
-                      <span style={{ textTransform: 'capitalize', fontSize: 14 }}>{item.name}</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>{money(item.finalPrice)}</span>
-                        <button
-                          className="btn"
-                          style={{ fontSize: 11, padding: '2px 10px', opacity: soldNow.has(item.id) ? 0.5 : 1 }}
-                          onClick={() => markAsSold(item.id)}
-                          disabled={soldNow.has(item.id)}
-                        >
-                          {soldNow.has(item.id) ? 'Sold ✓' : 'Mark sold'}
-                        </button>
+                  {(r.items || []).map((item, j) => {
+                    const isSold = (overrides[item.id] || item.status) === 'sold';
+                    return (
+                      <div key={j} className="confirm-summary-row">
+                        <span style={{ textTransform: 'capitalize', fontSize: 14 }}>{item.name}</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>{money(item.finalPrice)}</span>
+                          <button
+                            className="btn"
+                            style={{ fontSize: 11, padding: '2px 10px', opacity: isSold ? 0.4 : 1 }}
+                            onClick={() => markAsSold(item.id)}
+                            disabled={isSold}
+                          >Mark sold</button>
+                          <button
+                            className="btn"
+                            style={{ fontSize: 11, padding: '2px 10px', opacity: isSold ? 0.4 : 1 }}
+                            onClick={() => makeAvailable(item.id)}
+                            disabled={isSold}
+                          >Make available</button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                   <div className="confirm-summary-total"><span>Total</span><span className="amt">{money(r.total)}</span></div>
                 </div>
               </div>
