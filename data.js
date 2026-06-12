@@ -869,6 +869,18 @@ window.SALE_ITEMS = [
     "image": "images/monopoly.jpg",
   },
   {
+    "id": "marble-cylinder-vase",
+    "name": "marble cylinder vase",
+    "category": "decor",
+    "status": "available",
+    "originalPrice": 120,
+    "discount": "70%",
+    "finalPrice": 36,
+    "buyingDate": null,
+    "originalLink": null,
+    "image": "images/vaso.jpeg",
+  },
+  {
     "id": "mirror",
     "name": "mirror 24 x 40 black metal frame",
     "category": "decor",
