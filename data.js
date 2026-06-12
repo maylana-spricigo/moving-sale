@@ -869,6 +869,18 @@ window.SALE_ITEMS = [
     "image": "images/monopoly.jpg",
   },
   {
+    "id": "mirror",
+    "name": "mirror 24 x 40 black metal frame",
+    "category": "decor",
+    "status": "available",
+    "originalPrice": 90,
+    "discount": "50%",
+    "finalPrice": 45,
+    "buyingDate": null,
+    "originalLink": null,
+    "image": "images/mirror.jpg",
+  },
+  {
     "id": "insignia-tv",
     "name": "INSIGNIA 32\" Class F20 Series LED HD Smart Fire TV",
     "category": "electronics",
