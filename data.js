@@ -878,7 +878,7 @@ window.SALE_ITEMS = [
     "finalPrice": 45,
     "buyingDate": null,
     "originalLink": null,
-    "image": "images/mirror.jpg",
+    "image": "images/mirror.jpeg",
   },
   {
     "id": "insignia-tv",
