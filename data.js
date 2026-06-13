@@ -17,6 +17,7 @@ window.SALE_ITEMS = [
     "name": "bed pillows 2x",
     "category": "bedding",
     "status": "available",
+    "hidden": true,
     "originalPrice": 28.99,
     "discount": "50%",
     "finalPrice": 14.5,
