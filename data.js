@@ -906,6 +906,18 @@ window.SALE_ITEMS = [
     "image": "images/tv.jpg",
   },
   {
+    "id": "blue-desk-chair",
+    "name": "Blue Desk Chair with Wheels and Chrome Metal Base",
+    "category": "furniture",
+    "status": "available",
+    "originalPrice": 380,
+    "discount": "70%",
+    "finalPrice": 114,
+    "buyingDate": null,
+    "originalLink": "https://www.amazon.com/Serta-Ashland-Home-Office-Chair/dp/B074MMRKBC?th=1",
+    "image": "images/blue desk chair.jpg",
+  },
+  {
     "id": "sterilite-4-drawer",
     "name": "Sterilite 4 Drawer Wide Weave Tower",
     "category": "furniture",
