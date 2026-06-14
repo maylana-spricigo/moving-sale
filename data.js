@@ -915,7 +915,7 @@ window.SALE_ITEMS = [
     "finalPrice": 74,
     "buyingDate": null,
     "originalLink": "https://www.thisendup.com/pros/419/Classic_Side_Chair_with_Casters.htm",
-    "image": "images/classic side chair.jpg",
+    "image": "images/Classic Side Chair.jpeg",
   },
   {
     "id": "blue-desk-chair",
@@ -927,7 +927,7 @@ window.SALE_ITEMS = [
     "finalPrice": 114,
     "buyingDate": null,
     "originalLink": "https://www.amazon.com/Serta-Ashland-Home-Office-Chair/dp/B074MMRKBC?th=1",
-    "image": "images/blue desk chair.jpg",
+    "image": "images/Blue Desk Chair.png",
   },
   {
     "id": "sterilite-4-drawer",
