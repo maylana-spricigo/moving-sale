@@ -906,6 +906,18 @@ window.SALE_ITEMS = [
     "image": "images/tv.jpg",
   },
   {
+    "id": "classic-side-chair-casters",
+    "name": "Classic Side Chair with Casters",
+    "category": "furniture",
+    "status": "available",
+    "originalPrice": 369,
+    "discount": "80%",
+    "finalPrice": 74,
+    "buyingDate": null,
+    "originalLink": "https://www.thisendup.com/pros/419/Classic_Side_Chair_with_Casters.htm",
+    "image": "images/classic side chair.jpg",
+  },
+  {
     "id": "blue-desk-chair",
     "name": "Blue Desk Chair with Wheels and Chrome Metal Base",
     "category": "furniture",
