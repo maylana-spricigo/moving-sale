@@ -438,7 +438,7 @@ window.SALE_ITEMS = [
     "id": "shoe-cabinet-bench",
     "name": "shoe cabinet + bench",
     "category": "furniture",
-    "status": "available",
+    "status": "sold",
     "originalPrice": 152.99,
     "discount": "50%",
     "finalPrice": 76.5,
