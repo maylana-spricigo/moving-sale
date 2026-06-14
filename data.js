@@ -485,7 +485,7 @@ window.SALE_ITEMS = [
   {
     "id": "blender",
     "name": "blender",
-    "category": "kitchen",
+    "category": "electronics",
     "status": "sold",
     "originalPrice": 20,
     "discount": "50%",
@@ -533,7 +533,7 @@ window.SALE_ITEMS = [
   {
     "id": "crock-pot",
     "name": "crock pot",
-    "category": "kitchen",
+    "category": "electronics",
     "status": "available",
     "originalPrice": 89.87,
     "discount": "60%",
@@ -653,7 +653,7 @@ window.SALE_ITEMS = [
   {
     "id": "popcorn-popper",
     "name": "popcorn popper",
-    "category": "kitchen",
+    "category": "electronics",
     "status": "available",
     "originalPrice": 15,
     "discount": "50%",
