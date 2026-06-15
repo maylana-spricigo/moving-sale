@@ -85,7 +85,7 @@ function App() {
       return true;
     });
 
-    const CATEGORY_ORDER = ['furniture','decor','bedding','organizers','kitchen','electronics','cleaning','others'];
+    const CATEGORY_ORDER = ['furniture','electronics','decor','bedding','organizers','kitchen','cleaning','others'];
     const statusScore = (i) => { if (i.status === 'available') return 0; if (i.status === 'reserved') return 1; return 2; };
     const categoryScore = (i) => { const idx = CATEGORY_ORDER.indexOf(i.category); return idx === -1 ? 99 : idx; };
 
