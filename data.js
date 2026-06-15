@@ -300,7 +300,7 @@ window.SALE_ITEMS = [
     "finalPrice": 24,
     "buyingDate": "August 24, 2025",
     "originalLink": null,
-    "image": "images/bedframe.png",
+    "image": "images/bedframe.jpg",
   },
   {
     "id": "chair-2x",
