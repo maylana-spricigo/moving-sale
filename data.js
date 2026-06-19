@@ -292,7 +292,7 @@ window.SALE_ITEMS = [
   },
   {
     "id": "bedframe",
-    "name": "Beframe + Upholstered Headboard (Navy Velvet)",
+    "name": "Queen Beframe + Upholstered Headboard (Navy Velvet)",
     "category": "furniture",
     "status": "available",
     "originalPrice": 699,
