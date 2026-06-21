@@ -1152,7 +1152,9 @@ function ReservationsList({ onClose }) {
                 {r.contact?.notes && <div className="confirm-summary-row"><span className="label">Notes</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.notes}</span></div>}
                 <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--line-soft)' }}>
                   {(r.items || []).map((item, j) => {
-                    const isSold = (overrides[item.id] || item.status) === 'sold';
+                    const currentStatus = overrides[item.id] || item.status;
+                    const isSold = currentStatus === 'sold';
+                    const isAvailable = currentStatus === 'available';
                     return (
                       <div key={j} className="confirm-summary-row">
                         <span style={{ textTransform: 'capitalize', fontSize: 14 }}>{item.name}</span>
@@ -1166,9 +1168,9 @@ function ReservationsList({ onClose }) {
                           >Mark sold</button>
                           <button
                             className="btn"
-                            style={{ fontSize: 11, padding: '2px 10px', opacity: isSold ? 0.4 : 1 }}
+                            style={{ fontSize: 11, padding: '2px 10px', opacity: isAvailable ? 0.4 : 1 }}
                             onClick={() => makeAvailable(item.id)}
-                            disabled={isSold}
+                            disabled={isAvailable}
                           >Make available</button>
                         </div>
                       </div>
