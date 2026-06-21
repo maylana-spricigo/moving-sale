@@ -295,7 +295,12 @@ function App() {
       )}
 
       {showAdmin && (
-        <ReservationsList onClose={() => setShowAdmin(false)} />
+        <ReservationsList onClose={() => {
+          setShowAdmin(false);
+          const url = new URL(window.location.href);
+          url.searchParams.delete('admin');
+          window.history.replaceState({}, '', url.pathname + url.search + url.hash);
+        }} />
       )}
 
       <ItemDetailModal
