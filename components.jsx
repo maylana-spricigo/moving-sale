@@ -1173,6 +1173,7 @@ function ReservationsList({ onClose }) {
                     const currentStatus = overrides[item.id] || item.status;
                     const isSold = currentStatus === 'sold';
                     const isCanceled = currentStatus === 'available';
+                    const isLocked = isSold || isCanceled;
                     return (
                       <div key={j} className="confirm-summary-row">
                         <span style={{ textTransform: 'capitalize', fontSize: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -1188,15 +1189,15 @@ function ReservationsList({ onClose }) {
                           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>{money(item.finalPrice)}</span>
                           <button
                             className="btn"
-                            style={{ fontSize: 11, padding: '2px 10px', opacity: isSold ? 0.4 : 1 }}
+                            style={{ fontSize: 11, padding: '2px 10px', opacity: isLocked ? 0.4 : 1 }}
                             onClick={() => markAsSold(item.id)}
-                            disabled={isSold}
+                            disabled={isLocked}
                           >Mark sold</button>
                           <button
                             className="btn"
-                            style={{ fontSize: 11, padding: '2px 10px', opacity: isSold ? 0.4 : 1 }}
+                            style={{ fontSize: 11, padding: '2px 10px', opacity: isLocked ? 0.4 : 1 }}
                             onClick={() => makeAvailable(item.id)}
-                            disabled={isSold}
+                            disabled={isLocked}
                           >Make available</button>
                         </div>
                       </div>
