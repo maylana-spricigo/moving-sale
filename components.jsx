@@ -1164,10 +1164,6 @@ function ReservationsList({ onClose }) {
                   </h4>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--muted)' }}>{timeAgo(r.at)}</span>
                 </div>
-                {r.contact?.email && <div className="confirm-summary-row"><span className="label">Email</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.email}</span></div>}
-                {r.contact?.whatsapp && <div className="confirm-summary-row"><span className="label">WhatsApp</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.whatsapp}</span></div>}
-                {r.contact?.pickup && <div className="confirm-summary-row"><span className="label">Pickup</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.pickup}</span></div>}
-                {r.contact?.notes && <div className="confirm-summary-row"><span className="label">Notes</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.notes}</span></div>}
                 <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--line-soft)' }}>
                   {(r.items || []).map((item, j) => {
                     const currentStatus = overrides[item.id] || item.status;
