@@ -1150,10 +1150,18 @@ function ReservationsList({ onClose }) {
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--muted)', marginBottom: 24, textTransform: 'uppercase', letterSpacing: '0.1em', paddingBottom: 16, borderBottom: '1px solid var(--line)' }}>
               {reservations.length} reservation{reservations.length !== 1 ? 's' : ''} · {money(totalValue)} total
             </div>
-            {reservations.map(r => (
+            {reservations.map(r => {
+              const itemStatuses = (r.items || []).map(item => overrides[item.id] || item.status);
+              const allCanceled = itemStatuses.length > 0 && itemStatuses.every(s => s === 'available');
+              return (
               <div key={r.id} className="confirm-summary" style={{ marginBottom: 16 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 14 }}>
-                  <h4 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 400 }}>{r.contact?.name}</h4>
+                  <h4 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 400, display: 'flex', alignItems: 'center', gap: 10 }}>
+                    {r.contact?.name}
+                    {allCanceled && (
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--danger)', border: '1px solid var(--danger)', borderRadius: 999, padding: '2px 8px' }}>Canceled</span>
+                    )}
+                  </h4>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--muted)' }}>{timeAgo(r.at)}</span>
                 </div>
                 {r.contact?.email && <div className="confirm-summary-row"><span className="label">Email</span><span className="value" style={{ textTransform: 'none' }}>{r.contact.email}</span></div>}
@@ -1164,9 +1172,18 @@ function ReservationsList({ onClose }) {
                   {(r.items || []).map((item, j) => {
                     const currentStatus = overrides[item.id] || item.status;
                     const isSold = currentStatus === 'sold';
+                    const isCanceled = currentStatus === 'available';
                     return (
                       <div key={j} className="confirm-summary-row">
-                        <span style={{ textTransform: 'capitalize', fontSize: 14 }}>{item.name}</span>
+                        <span style={{ textTransform: 'capitalize', fontSize: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <span style={isCanceled ? { textDecoration: 'line-through', color: 'var(--muted)' } : null}>{item.name}</span>
+                          {isCanceled && (
+                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--danger)', border: '1px solid var(--danger)', borderRadius: 999, padding: '1px 6px' }}>Canceled</span>
+                          )}
+                          {isSold && (
+                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--good)', border: '1px solid var(--good)', borderRadius: 999, padding: '1px 6px' }}>Sold</span>
+                          )}
+                        </span>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13 }}>{money(item.finalPrice)}</span>
                           <button
@@ -1188,7 +1205,8 @@ function ReservationsList({ onClose }) {
                   <div className="confirm-summary-total"><span>Total</span><span className="amt">{money(r.total)}</span></div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </>
         )}
       </div>
