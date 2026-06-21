@@ -1069,13 +1069,23 @@ function ReservationsList({ onClose }) {
   }, [onClose]);
 
   async function markAsSold(itemId) {
-    if (!db) return;
-    await db.collection('overrides').doc(itemId).set({ status: 'sold' }).catch(console.error);
+    if (!db || !itemId) { alert('Could not update — missing item id.'); return; }
+    try {
+      await db.collection('overrides').doc(itemId).set({ status: 'sold' });
+    } catch (e) {
+      console.error(e);
+      alert('Failed to update item: ' + e.message);
+    }
   }
 
   async function makeAvailable(itemId) {
-    if (!db) return;
-    await db.collection('overrides').doc(itemId).set({ status: 'available' }).catch(console.error);
+    if (!db || !itemId) { alert('Could not update — missing item id.'); return; }
+    try {
+      await db.collection('overrides').doc(itemId).set({ status: 'available' });
+    } catch (e) {
+      console.error(e);
+      alert('Failed to update item: ' + e.message);
+    }
   }
 
   function submitCode(e) {
@@ -1154,7 +1164,6 @@ function ReservationsList({ onClose }) {
                   {(r.items || []).map((item, j) => {
                     const currentStatus = overrides[item.id] || item.status;
                     const isSold = currentStatus === 'sold';
-                    const isAvailable = currentStatus === 'available';
                     return (
                       <div key={j} className="confirm-summary-row">
                         <span style={{ textTransform: 'capitalize', fontSize: 14 }}>{item.name}</span>
@@ -1168,9 +1177,9 @@ function ReservationsList({ onClose }) {
                           >Mark sold</button>
                           <button
                             className="btn"
-                            style={{ fontSize: 11, padding: '2px 10px', opacity: isAvailable ? 0.4 : 1 }}
+                            style={{ fontSize: 11, padding: '2px 10px', opacity: isSold ? 0.4 : 1 }}
                             onClick={() => makeAvailable(item.id)}
-                            disabled={isAvailable}
+                            disabled={isSold}
                           >Make available</button>
                         </div>
                       </div>
